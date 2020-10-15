@@ -21,7 +21,6 @@ public class CarFactory {
     }
 
     public ICar getCar() {
-        return new MockCar(mContext);
-//        return new BydCar(mContext);
+        return new BydCar(mContext);
     }
 }

@@ -16,11 +16,12 @@ public class BydCar implements ICar {
 
     public BydCar(Context context) {
         this.mContext = context;
-        mBodyWorkDevice = BYDAutoBodyworkDevice.getInstance(mContext);
+//        mBodyWorkDevice = BYDAutoBodyworkDevice.getInstance(mContext);
     }
 
     @Override
     public double getSteeringWheelValue(int type) {
-        return mBodyWorkDevice.getSteeringWheelValue(type);
+//        return mBodyWorkDevice.getSteeringWheelValue(type);
+        return 0;
     }
 }

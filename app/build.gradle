@@ -13,10 +13,23 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        bydsign {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storePassword 'android'
+            storeFile file('../keystore/platform.keystore')
+        }
+    }
+
     buildTypes {
+        debug {
+            signingConfig signingConfigs.bydsign
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.bydsign
         }
     }
 }
