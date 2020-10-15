@@ -1,13 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PermissionActivity">
+    android:orientation="vertical"
+    tools:context=".SpeedActivity">
 
-<!--    <TextView-->
-<!--        -->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content" />-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:paddingStart="30dp">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/wheel_speed"
+            style="@style/text_style"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:maxLines="1" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/wheel_angle"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:maxLines="1" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/accelerate"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:maxLines="1" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/brake"
+            style="@style/text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:maxLines="1" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
