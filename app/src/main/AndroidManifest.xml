@@ -6,27 +6,25 @@
     <uses-permission android:name="android.permission.BYDAUTO_BODYWORK_COMMON"/>
     <!--车辆信息类获取权限-->
     <uses-permission android:name="android.permission.BYDAUTO_BODYWORK_GET"/>
-    <!--空调类的权限-->
-    <uses-permission android:name="android.permission.BYDAUTO_AC_COMMON"/>
-    <!--空调类获取的权限-->
-    <uses-permission android:name="android.permission.BYDAUTO_AC_GET"/>
-    <!--空调类获取设置权限-->
-    <uses-permission android:name="android.permission.BYDAUTO_AC_SET"/>
-    <!--传感器类获取的权限-->
-    <uses-permission android:name="android.permission.BYDAUTO_SENSOR_GET"/>
+    <!-- 车速类-->
+    <uses-permission android:name="android.permission.BYDAUTO_SPEED_COMMON"/>
+    <uses-permission android:name="android.permission.BYDAUTO_SPEED_GET"/>
 
     <application
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+
+        <activity android:name=".PermissionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".SpeedActivity" />
     </application>
 
 </manifest>
