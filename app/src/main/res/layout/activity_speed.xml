@@ -24,7 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:text="方向盘速度: '/s" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/wheel_angle"
@@ -32,7 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:text="方向盘角度: '" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/accelerate"
@@ -40,7 +42,8 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:text="油门深度: %" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/brake"
@@ -48,7 +51,8 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:text="刹车深度: %" />
 
     </LinearLayout>
 

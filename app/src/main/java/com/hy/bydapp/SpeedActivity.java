@@ -5,11 +5,13 @@ import android.hardware.bydauto.bodywork.BYDAutoBodyworkDevice;
 import android.hardware.bydauto.speed.AbsBYDAutoSpeedListener;
 import android.hardware.bydauto.speed.BYDAutoSpeedDevice;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +39,8 @@ public class SpeedActivity extends AppCompatActivity {
     private AbsBYDAutoBodyworkListener mBydAutoBodyworkListener;
     private AbsBYDAutoSpeedListener mBydAutoSpeedListener;
 
+    private Handler mMainHandler = new Handler();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,20 +49,7 @@ public class SpeedActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mBodyworkDevice = BYDAutoBodyworkDevice.getInstance(this);
-        double s = mBodyworkDevice.getSteeringWheelValue(
-                BYDAutoBodyworkDevice.BODYWORK_CMD_STEERING_WHEEL_SPEED);
-        double a = mBodyworkDevice.getSteeringWheelValue(
-                BYDAutoBodyworkDevice.BODYWORK_CMD_STEERING_WHEEL_ANGEL);
-        Log.d(TAG, "s: " + s + ", a:" + a);
-        set(mWheelSpeedView, "方向盘速度: " + s + "'/s");
-        set(mWheelAngleView, "方向盘角度: " + a + "'");
-
         mSpeedDevice = BYDAutoSpeedDevice.getInstance(this);
-        int ad = mSpeedDevice.getAccelerateDeepness();
-        int bd = mSpeedDevice.getBrakeDeepness();
-        Log.d(TAG, "ad: " + ad + ", bd: " + bd);
-        set(mAccelerateView, "油门深度: " + ad + "%");
-        set(mBrakeView, "刹车深度: " + bd + "%");
 
         if (mBydAutoBodyworkListener == null) {
             mBydAutoBodyworkListener = new AbsBYDAutoBodyworkListener() {
@@ -91,6 +82,27 @@ public class SpeedActivity extends AppCompatActivity {
                 }
             };
         }
+
+        mMainHandler.postDelayed(() -> {
+            Toast.makeText(this, "准备获取方向盘和刹车油门数据", Toast.LENGTH_SHORT).show();
+            refreshData();
+        }, 3000);
+    }
+
+    private void refreshData() {
+        double s = mBodyworkDevice.getSteeringWheelValue(
+                BYDAutoBodyworkDevice.BODYWORK_CMD_STEERING_WHEEL_SPEED);
+        double a = mBodyworkDevice.getSteeringWheelValue(
+                BYDAutoBodyworkDevice.BODYWORK_CMD_STEERING_WHEEL_ANGEL);
+        Log.d(TAG, "s: " + s + ", a:" + a);
+        set(mWheelSpeedView, "方向盘速度: " + s + "'/s");
+        set(mWheelAngleView, "方向盘角度: " + a + "'");
+
+        int ad = mSpeedDevice.getAccelerateDeepness();
+        int bd = mSpeedDevice.getBrakeDeepness();
+        Log.d(TAG, "ad: " + ad + ", bd: " + bd);
+        set(mAccelerateView, "油门深度: " + ad + "%");
+        set(mBrakeView, "刹车深度: " + bd + "%");
     }
 
     @Override
@@ -110,12 +122,7 @@ public class SpeedActivity extends AppCompatActivity {
     }
 
     private void set(final TextView textView, final String text) {
-        textView.post(new Runnable() {
-            @Override
-            public void run() {
-                textView.setText(text);
-            }
-        });
+        textView.post(() -> textView.setText(text));
     }
 
 }

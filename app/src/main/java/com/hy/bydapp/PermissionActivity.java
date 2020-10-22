@@ -1,6 +1,7 @@
 package com.hy.bydapp;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -24,9 +25,7 @@ public class PermissionActivity extends AppCompatActivity {
 
     private static final String[] PERMISSIONS = {
             Manifest.permission.BYDAUTO_BODYWORK_COMMON,
-            Manifest.permission.BYDAUTO_BODYWORK_GET,
             Manifest.permission.BYDAUTO_SPEED_COMMON,
-            Manifest.permission.BYDAUTO_SPEED_GET,
     };
     private static final int REQUREST_CODE = 1000;
 
