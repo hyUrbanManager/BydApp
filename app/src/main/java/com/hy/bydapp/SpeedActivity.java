@@ -48,8 +48,14 @@ public class SpeedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_speed);
         ButterKnife.bind(this);
 
+        Toast.makeText(this, "准备获取设备对象", Toast.LENGTH_SHORT).show();
         mBodyworkDevice = BYDAutoBodyworkDevice.getInstance(this);
-        mSpeedDevice = BYDAutoSpeedDevice.getInstance(this);
+//            mSpeedDevice = BYDAutoSpeedDevice.getInstance(this);
+
+        mMainHandler.postDelayed(() -> {
+            Toast.makeText(this, "准备获取方向盘和刹车油门数据", Toast.LENGTH_SHORT).show();
+            refreshData();
+        }, 3000);
 
         if (mBydAutoBodyworkListener == null) {
             mBydAutoBodyworkListener = new AbsBYDAutoBodyworkListener() {
@@ -83,10 +89,6 @@ public class SpeedActivity extends AppCompatActivity {
             };
         }
 
-        mMainHandler.postDelayed(() -> {
-            Toast.makeText(this, "准备获取方向盘和刹车油门数据", Toast.LENGTH_SHORT).show();
-            refreshData();
-        }, 3000);
     }
 
     private void refreshData() {
@@ -98,11 +100,11 @@ public class SpeedActivity extends AppCompatActivity {
         set(mWheelSpeedView, "方向盘速度: " + s + "'/s");
         set(mWheelAngleView, "方向盘角度: " + a + "'");
 
-        int ad = mSpeedDevice.getAccelerateDeepness();
-        int bd = mSpeedDevice.getBrakeDeepness();
-        Log.d(TAG, "ad: " + ad + ", bd: " + bd);
-        set(mAccelerateView, "油门深度: " + ad + "%");
-        set(mBrakeView, "刹车深度: " + bd + "%");
+//        int ad = mSpeedDevice.getAccelerateDeepness();
+//        int bd = mSpeedDevice.getBrakeDeepness();
+//        Log.d(TAG, "ad: " + ad + ", bd: " + bd);
+//        set(mAccelerateView, "油门深度: " + ad + "%");
+//        set(mBrakeView, "刹车深度: " + bd + "%");
     }
 
     @Override
@@ -110,7 +112,7 @@ public class SpeedActivity extends AppCompatActivity {
         super.onResume();
         Log.d(TAG, "registerListener.");
         mBodyworkDevice.registerListener(mBydAutoBodyworkListener);
-        mSpeedDevice.registerListener(mBydAutoSpeedListener);
+//            mSpeedDevice.registerListener(mBydAutoSpeedListener);
     }
 
     @Override
@@ -118,7 +120,7 @@ public class SpeedActivity extends AppCompatActivity {
         super.onPause();
         Log.d(TAG, "unregisterListener.");
         mBodyworkDevice.unregisterListener(mBydAutoBodyworkListener);
-        mSpeedDevice.unregisterListener(mBydAutoSpeedListener);
+//            mSpeedDevice.unregisterListener(mBydAutoSpeedListener);
     }
 
     private void set(final TextView textView, final String text) {
